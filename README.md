@@ -3,7 +3,7 @@
 
 ### Setup YIG Email Program
 ```bash
-git clone <REPO_URL>
+git clone https://github.com/Yeetum/FUMaaS_EMAIL.git
 cd FUMaaS_EMAIL
 pip install -r requirements.txt
 ```
