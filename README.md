@@ -3,7 +3,7 @@
 # git clone repo
 ## Initialize config.py for runtime
 # cd FUMaaS_EMAIL
-# pip install -r requirements.txt
+# pip install -r requirements.txtpip
 # python send_YIG_Email.py FILEPATH
 
 ## TODO
