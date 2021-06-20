@@ -1,2 +1,5 @@
 # Ignore sensitive keys 
 config.py
+
+# Ignore local dev csv file
+crypto.signals.2021-05-23.csv
