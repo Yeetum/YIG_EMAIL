@@ -5,7 +5,7 @@
 import sys
 import smtplib
 from pathlib import Path
-from sendgrid import SendGridAPIClient
+#from sendgrid import SendGridAPIClient
 
 # Import config variables
 import config

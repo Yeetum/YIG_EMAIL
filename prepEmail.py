@@ -23,7 +23,7 @@ def prep_SMTPemail_body(FILEPATH, SENDER, SUBJECT):
     msg.attach(MIMEText('OCI SMTP Email: ' +  subject, 'plain'))
     return msg
 
-## Bugged
+## Bugged // fix it
 def prep_SendGrid_email(FILEPATH, SENDER, RECEPIENT, SUBJECT):
 
     print(" Prepping SendGrid email")
