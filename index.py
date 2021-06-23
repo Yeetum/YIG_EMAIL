@@ -21,9 +21,9 @@ if __name__ == "__main__":
         PASSWORD_SMTP = config.PASSWORD_SMTP
         SENDER = config.SENDER
         SENDERNAME = config.SENDERNAME
-        SUBJECT = 'YIG Report - '+ str(FILEPATH.stem)
 
         RECEPIENT_FILE = sys.argv[2]
+        SUBJECT = sys.argv[3]
 
         SMTP_SERVER = config.SMTP_SERVER
         SMTP_PORT = config.SMTP_PORT
@@ -45,7 +45,6 @@ if __name__ == "__main__":
 
         with open(RECEPIENT_FILE, "r") as rfile:
             for recepient in rfile:
-                message["to"] = recepient
                 print("Sending SMTP email to:", recepient)
                 smtpObj.sendmail(SENDER, recepient, message.as_string())
         smtpObj.quit()

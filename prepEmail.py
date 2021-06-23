@@ -42,7 +42,7 @@ def prep_SendGrid_email(FILEPATH, SENDER, RECEPIENT, SUBJECT):
 
     attachedFile = Attachment(
         FileContent(encoded_file),
-        FileName('text/csv'),
+        FileName(str(FILEPATH)),
         FileType(file_type=MIMEBase('application, "octet-stream')),
         Disposition('attachment')
     )
