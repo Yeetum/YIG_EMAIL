@@ -21,12 +21,12 @@ SG_API_KEY = 'Send Grid Key'
 
 ### Run test program
 ```bash
-python index.py FILEPATH TEST_RECEPIENTS_FILE
+python index.py FILEPATH TEST_RECEPIENTS_TXT_FILE
 ```
 
 ### Run production program
 ```bash
-python index.py FILEPATH PROD_RECEPIENTS_FILE
+python index.py FILEPATH PROD_RECEPIENTS_TXT_FILE
 ```
 # TODO
 ## Add customer as recepient through txt file

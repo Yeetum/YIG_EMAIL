@@ -1,6 +1,7 @@
 # Ignore sensitive keys 
 config.py
 testRecepients.txt
+__pycache__/
 
 # Ignore local dev csv file
 crypto.signals.2021-05-23.csv
