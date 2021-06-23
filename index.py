@@ -46,6 +46,7 @@ if __name__ == "__main__":
         with open(RECEPIENT_FILE, "r") as rfile:
             for recepient in rfile:
                 message["to"] = recepient
+                print("Sending SMTP email to:", recepient)
                 smtpObj.sendmail(SENDER, recepient, message.as_string())
         smtpObj.quit()
 
