@@ -19,6 +19,19 @@ SMTP_PORT = 'SMTP port'
 SG_API_KEY = 'Send Grid Key'
 ```
 
+### Initialize testRecepients.txt and prodRecepients.txt
+```
+test@test.com
+test2@test.com
+test3@test.com
+```
+
+```
+prod@prod.com
+prod2@prod.com
+prod3@prod.com
+```
+
 ### Run test program
 ```bash
 python index.py FILEPATH TEST_RECEPIENTS_TXT_FILE SUBJECT_STRING
