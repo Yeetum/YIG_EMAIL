@@ -14,9 +14,9 @@ def htmlify_csv(FILEPATH, SUBJECT):
     df_csv = pd.read_csv(FILEPATH)
     data = pd.DataFrame(df_csv)
 
-    html_table_data = build_table(data, 'blue_light')
+    html_table_data = build_table(data, 'grey_dark')
     print("Beautified csv table", html_table_data)
-    prepped_html = template.render(subject=SUBJECT, df=data.to_html() )
+    prepped_html = template.render(subject=SUBJECT, df=html_table_data )
     print(prepped_html)
     return prepped_html
 
