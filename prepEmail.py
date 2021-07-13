@@ -6,7 +6,7 @@ from email import encoders
 from email.utils import COMMASPACE
 from sendgrid.helpers.mail import (Mail, Attachment, FileContent, FileName, FileType, Disposition)
 
-def prep_SMTPemail_body(FILEPATH, SENDER, SUBJECT):
+def prep_SMTPemail_body(FILEPATH, SENDER, SUBJECT, html=None):
 
     print(" Prepping SMTP email body")
 
@@ -15,12 +15,17 @@ def prep_SMTPemail_body(FILEPATH, SENDER, SUBJECT):
     msg['From'] = SENDER
     msg['Subject'] = subject
 
-    part = MIMEBase('application', "octet-stream")
-    part.set_payload(open(FILEPATH, "rb").read())
-    encoders.encode_base64(part)
-    part.add_header('Content-Disposition', 'attachment', filename=str(FILEPATH))
-    msg.attach(part)
-    msg.attach(MIMEText('OCI SMTP Email: ' +  subject, 'plain'))
+    if html:
+        part = MIMEMultipart('alternative')
+        msg.attach(part)
+        msg.attach(MIMEText(html, 'html'))
+    elif html == None:
+        part = MIMEBase('application', "octet-stream")
+        part.set_payload(open(FILEPATH, "rb").read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', 'attachment', filename=str(FILEPATH.name))
+        msg.attach(part)
+        msg.attach(MIMEText('OCI SMTP Email: ' +  subject, 'plain'))
     return msg
 
 ## Bugged // fix it

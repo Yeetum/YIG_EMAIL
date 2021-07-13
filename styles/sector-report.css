@@ -1,0 +1,44 @@
+.report-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 10;
+    display: block;
+    color: rgb(92, 92, 92);
+}
+
+.report-section {
+margin-bottom: 80px;
+}
+
+.report-section-title {
+font-family: georgia;
+font-size: 50px;
+display: block;
+font-weight:normal;
+margin: 20px 0;
+text-align: Center;
+}
+
+.report-item {
+margin: 35px 0;
+font-size: 18px;
+}
+
+.report-date{
+font-family: helvetica;
+font-weight: bold;
+border-bottom: 2px dotted rgb(213, 213, 213);
+}
+
+.report-sector {
+font-style: italic;
+font-size: .9em;
+line-height: 1.5em;
+}
+
+.report-sector-score {
+float: right;
+font-weight: bold;
+font-family: arial;
+margin-top: -22px;
+}

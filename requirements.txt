@@ -1,1 +1,5 @@
 sendgrid==6.6.0
+pandas
+pretty_html_table
+jinja2
+
