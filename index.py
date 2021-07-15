@@ -5,13 +5,15 @@
 import sys
 import smtplib
 from pathlib import Path
+import time
 #from sendgrid import SendGridAPIClient
 
 # Import config variables
 import config
 
-# Import mail prepper
+# Import mail prepper & htmlify
 import prepEmail
+import htmlify
 
 if __name__ == "__main__":
     try:
@@ -30,9 +32,23 @@ if __name__ == "__main__":
 
         print('SUBJECT: ', SUBJECT)
         print('RECEPIENTS: ', RECEPIENT_FILE)
+        print('FILETYPE:', FILEPATH.suffix)
 
-        # Prep email
-        message = prepEmail.prep_SMTPemail_body(FILEPATH, SENDER, SUBJECT)
+        if not FILEPATH.exists():
+            print("Oops, file doesn't exist!")
+            raise ValueError('Filepath does not exist...')
+        else:
+            print("File located...")
+
+        if FILEPATH.suffix == ".csv":
+            print('CSV filepath, htmlify executing...')
+            html = htmlify.htmlify_csv(FILEPATH, SUBJECT)
+            message = prepEmail.prep_SMTPemail_body(FILEPATH, SENDER, SUBJECT, html)
+        else:
+            print('filepath not htmlified')
+            FILEPATH = FILEPATH
+            message = prepEmail.prep_SMTPemail_body(FILEPATH, SENDER, SUBJECT)
+
         
         #TODO: SendGrid email needs work on FileType/Attachment of csv
         #sg_message = prepEmail.prep_SendGrid_email(FILEPATH, SENDER, RECEPIENT, SUBJECT)
@@ -55,6 +71,6 @@ if __name__ == "__main__":
         #print(response.status_code, response.body, response.headers)
 
     except Exception as e:
-        print(e)
+        print("Error", e)
     finally:
         print("Email job finished...")
