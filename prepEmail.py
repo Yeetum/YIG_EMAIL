@@ -26,10 +26,14 @@ def prep_SMTPemail_body(FILEPATH, SENDER, SUBJECT, html=None):
         part.add_header('Content-Disposition', 'attachment', filename=str(FILEPATH.name))
         msg.attach(part)
         msg.attach(MIMEText('OCI SMTP Email: ' +  subject, 'plain'))
+    
+    
     return msg
 
 ## Bugged // fix it
-def prep_SendGrid_email(FILEPATH, SENDER, RECEPIENT, SUBJECT):
+def prep_sg_email(FILEPATH, SENDER, RECEPIENT, SUBJECT, HTML):
+
+    ## templates and automation
 
     print(" Prepping SendGrid email")
 
@@ -37,7 +41,7 @@ def prep_SendGrid_email(FILEPATH, SENDER, RECEPIENT, SUBJECT):
         from_email=SENDER,
         to_emails=RECEPIENT,
         subject=SUBJECT,
-        html_content='<strong>YIG SendGrid Dev email</strong>'
+        html_content=HTML
     )
 
     with open(FILEPATH, 'rb') as f:
@@ -48,7 +52,7 @@ def prep_SendGrid_email(FILEPATH, SENDER, RECEPIENT, SUBJECT):
     attachedFile = Attachment(
         FileContent(encoded_file),
         FileName(str(FILEPATH)),
-        FileType(file_type=MIMEBase('application, "octet-stream')),
+        FileType(file_type=MIMEMultipart('alternative')),
         Disposition('attachment')
     )
     message.attachment = attachedFile

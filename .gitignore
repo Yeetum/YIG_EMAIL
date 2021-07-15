@@ -5,3 +5,4 @@ __pycache__/
 
 # Ignore local dev csv file
 crypto.signals.2021-05-23.csv
+stock_reports/
