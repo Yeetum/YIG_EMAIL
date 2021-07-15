@@ -43,12 +43,11 @@ def stock_reports(MARKET_STRENGTH_FILEPATH, SECTOR_REPORT_FILEPATH, STOCK_SIGNAL
     # Prep html tables of dataframes
     ms_html_table= build_table(ms_data, 'grey_dark')
     sector_html_table = build_table(sector_data, 'grey_dark')
-    signal_html_table = build_table(signal_data, 'grey_dark')
+    signal_html_table = signal_data.to_html()
     
     prepped_html = stock_template.render(subject=SUBJECT, marketScore=ms_html_table, sectorSummary=sector_html_table, signalsReport=signal_html_table, yeetumLogo=yeetumLogo, atlasURI=atlasURI )
-    print(sys.getsizeof(prepped_html))
-    #return prepped_html
-    pass
+    print('HTML size in bytes', sys.getsizeof(prepped_html))
+    return prepped_html
 
 
 def htmlify_cleanup():
