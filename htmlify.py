@@ -1,11 +1,25 @@
 import sys
+import io
+from base64 import b64encode
 from pathlib import Path
+from numpy import sign
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from pretty_html_table import build_table
+import plotly.express as px
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output
 
 # Import web assets config
 import config
+
+buffer = io.StringIO()
+html_bytes = buffer.getvalue().encode()
+encoded = b64encode(html_bytes).decode()
+
+app = dash.Dash(__name__)
 
 env = Environment(
     loader=FileSystemLoader(['./templates/', './templates/images/']),
@@ -39,11 +53,18 @@ def stock_reports(MARKET_STRENGTH_FILEPATH, SECTOR_REPORT_FILEPATH, STOCK_SIGNAL
     ms_data = pd.DataFrame(df_marketStrength)
     sector_data = pd.DataFrame(df_sectorReport)
     signal_data = pd.DataFrame(df_stockSignal)
+    signal_data.drop(signal_data.columns[[0,12,13, 14, 15, 16, 17]], axis=1, inplace=True)
+
+
+    ms_fig = px.line(ms_data, x=ms_data[ms_data.columns[0]], y=ms_data[ms_data.columns[1]])
 
     # Prep html tables of dataframes
-    ms_html_table= build_table(ms_data, 'grey_dark')
+    app.layout = html.Div([
+        dcc.Graph(id="graph", figure=ms_fig)
+    ])
+    ms_html_table = ms_fig.to_html()
     sector_html_table = build_table(sector_data, 'grey_dark')
-    signal_html_table = signal_data.to_html()
+    signal_html_table = None #signal_data.to_html()
     
     prepped_html = stock_template.render(subject=SUBJECT, marketScore=ms_html_table, sectorSummary=sector_html_table, signalsReport=signal_html_table, yeetumLogo=yeetumLogo, atlasURI=atlasURI )
     print('HTML size in bytes', sys.getsizeof(prepped_html))
