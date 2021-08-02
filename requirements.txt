@@ -4,3 +4,4 @@ pretty_html_table
 jinja2
 schedule
 plotly
+dash
