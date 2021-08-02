@@ -18,16 +18,16 @@ if __name__ == "__main__":
         
         FILEPATH, USER_SMTP, PASSWORD_SMTP, SENDER, SENDERNAME, RECEPIENT_FILE, SUBJECT, SMTP_SERVER, SMTP_PORT = initservice.init_atlas_email_services()
 
-        MARKET_STRENGTH_FILEPATH = Path('./stock_reports/csvfiles_market-strength-stocks.2021-07-14.csv')
-        SECTOR_REPORT_FILEPATH = Path('./stock_reports/csvfiles_sector-strength-stocks.2021-07-14.csv')
-        STOCK_SIGNAL_FILEPATH = Path('./stock_reports/csvfiles_stocks.2021-07-14.signals.csv')
+        #MARKET_STRENGTH_FILEPATH = Path('./stock_reports/csvfiles_market-strength-stocks.2021-07-14.csv')
+        #SECTOR_REPORT_FILEPATH = Path('./stock_reports/csvfiles_sector-strength-stocks.2021-07-14.csv')
+        #STOCK_SIGNAL_FILEPATH = Path('./stock_reports/csvfiles_stocks.2021-07-14.signals.csv')
         #schedule.every().day.at("17:00").do(job)
 
         if FILEPATH.suffix == ".csv":
             print('CSV filepath, htmlify executing...')
 
-            #html = htmlify.standard_csv(FILEPATH, SUBJECT)
-            html = htmlify.stock_reports(MARKET_STRENGTH_FILEPATH, SECTOR_REPORT_FILEPATH, STOCK_SIGNAL_FILEPATH, SUBJECT)
+            html = htmlify.standard_csv(FILEPATH, SUBJECT)
+            #html = htmlify.stock_reports(MARKET_STRENGTH_FILEPATH, SECTOR_REPORT_FILEPATH, STOCK_SIGNAL_FILEPATH, SUBJECT)
 
             message = prepEmail.prep_SMTPemail_body(FILEPATH, SENDER, SUBJECT, html)
             sendEmail.send_smtp_email(SMTP_SERVER, SMTP_PORT, USER_SMTP, PASSWORD_SMTP,RECEPIENT_FILE, SENDER, message)
