@@ -3,9 +3,9 @@
 ###
 
 import initservice
-import prepEmail
-import htmlify
-import sendEmail
+from atlasmail import prepEmail
+from atlasmail import htmlify
+from atlasmail import sendEmail
 import schedule
 
 from pathlib import Path
