@@ -34,12 +34,18 @@ prod3@prod.com
 
 ### Run test program
 ```bash
-python index.py FILEPATH TEST_RECEPIENTS_TXT_FILE SUBJECT_STRING
+python index.py TEST_RECEPIENTS_TXT_FILE SUBJECT_STRING FILEPATH 
+```
+
+### Run stock test program
+* Edit for argsparse optional with stock report rendering on 3 csv inputs (manual paths currently)
+```bash
+python index.py testRecepients.txt "Stock Report DEV Test" ./csvfiles_sector-strength-stocks.2021-07-06.csv
 ```
 
 ### Run production program
 ```bash
-python index.py FILEPATH PROD_RECEPIENTS_TXT_FILE SUBJECT_STRING
+python index.py PROD_RECEPIENTS_TXT_FILE SUBJECT_STRING FILEPATH 
 ```
 # TODO
 ## Add customer as recepient through txt file
